@@ -33,15 +33,20 @@ The preview shows both alliance faces. The 3D preview allows orbiting and explod
 
 ## Number geometry and validation
 
-Accepts 1–6 digits without leading zeros. Digits have a nominal 57 mm height; long numbers are compressed only horizontally to fit the allowed footprint. The 3/6/1/7 diagonal construction uses 60 degrees, with smooth sampled arcs and a 4.5 mm stroke before horizontal fitting. The 9 is exactly a 180-degree rotation of the 6. The 8 combines two open circular loops in those orientations without diagonal stems, sized to retain the 57 mm height. The 4 has a crossbar ending at its vertical stem, without a projecting tail. Its vertical extends 25% of the gap from the crossbar to the top of the digit (21.75 to 30 mm on the centerline, with cap height 54.75 mm). The 2 uses an ellipse-to-diagonal tangent join, with a 60-degree diagonal. The 0 is an upper-right stroke and a lower-left stroke, with openings at those two corners so the colored plate stays one piece. Other digits have compatible geometry and stencil openings where necessary to avoid loose plate islands. These digit shapes are procedurally constructed paths.
+Accepts 1–6 digits without leading zeros. The page offers four digit styles. All use a nominal 57 mm digit height, and long numbers are compressed only horizontally to fit the allowed footprint.
+
+Stencil is the original continuous-stroke face. The 3/6/1/7 diagonal construction uses 60 degrees, with smooth sampled arcs and a 4.5 mm stroke before horizontal fitting. The 9 is exactly a 180-degree rotation of the 6. The 8 combines two open circular loops in those orientations without diagonal stems, sized to retain the 57 mm height. The 4 has a crossbar ending at its vertical stem, without a projecting tail. Its vertical extends 25% of the gap from the crossbar to the top of the digit (21.75 to 30 mm on the centerline, with cap height 54.75 mm). The 2 uses an ellipse-to-diagonal tangent join, with a 60-degree diagonal. The 0 is an upper-right stroke and a lower-left stroke, with openings at those two corners so the colored plate stays one piece. Other digits have compatible geometry and openings where necessary to avoid loose plate islands.
+
+The other styles are filled outlines. 7-segment follows a classic display. Each bar is an elongated hexagon, the upper and lower verticals stay separate, and the 1 is split. Every 7-segment digit uses the same cell width, and a narrow digit such as 1 sits on the right of that cell so the bars stay in line. Locomotive is a military block stencil. Velodrome is an italic techno stencil. Where a counter would leave a loose island in the colored plate, a narrow opening keeps that plate one piece. Buried ribs at both ends of the hidden strips keep the white insert one piece for every filled style. These outlines are redrawn for this tool; the original font files are not included. A shared configuration link can select any style.
 
 Each generation validates a single connected plate solid, a single connected white solid, valid Manifold meshes, and zero volume interference in the mirrored three-part assembly. Runtime memory is released after each generation. STL download is blocked if validation fails. Printability depends on the printer, slicer, material, and fit calibration; this is not an official FTC inspection approval.
 
-Test cases include 36117, each individual digit, mixed digits, repeated curved digits, 6-digit numbers, invalid inputs, STL triangle counts, and assembly clearance. Automated tests exercise the same WASM engine used by the browser.
+Test cases include 36117, each individual digit, mixed digits, repeated curved digits, 6-digit numbers, invalid inputs, STL triangle counts, and assembly clearance, for the stencil face and each filled style. Automated tests exercise the same WASM engine used by the browser.
 
 ## Source
 
-- `geometry.js`: procedural digit shapes, 2D clipping, 3D solids, validation, binary STL writer.
+- `geometry.js`: digit shapes, 2D clipping, 3D solids, validation, binary STL writer.
+- `digit-fonts.js`: filled digit outlines for 7-segment, Locomotive, and Velodrome.
 - `mesh-worker.js`: browser worker for geometry generation.
 - `app.js`: form, downloads, previews, 3D assembly.
 - `dist/index.html`, `dist/style.css`: accessible responsive page.

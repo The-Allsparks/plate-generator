@@ -1,3 +1,5 @@
 node_modules/
 .wrangler/
 *.tar.gz
+.fontcache/
+__pycache__/

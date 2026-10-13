@@ -228,7 +228,19 @@ input#number {
 #hint {
   font-size: 12px;
   color: var(--muted);
-  margin: 8px 0 22px;
+  margin: 8px 0 16px;
+}
+
+select#font {
+  width: 100%;
+  margin: 0 0 22px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 16px;
 }
 
 button {
